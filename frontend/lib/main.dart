@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/services/articles_service.dart';
 
 void main() {
   runApp(const MyApp());
@@ -6,10 +7,14 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final articleService = ArticleService();
+    articleService.getArticles().then((articles) {
+      articles.forEach((element) {
+        print(element.title);
+      });
+    });
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
