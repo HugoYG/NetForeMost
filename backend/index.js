@@ -10,7 +10,7 @@ const port = 3000;
 connectDB();
 
 
-app.get('/articles', async (req, res) => {
+app.get('/articles', async (_, res) => {
     try {
         const articles = await Article.find({});
         res.json(articles);
