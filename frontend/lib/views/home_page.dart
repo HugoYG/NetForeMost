@@ -17,7 +17,15 @@ class _HomePageState extends State<HomePage> {
   final articleService = ArticleService();
   final List<Article> articlesL = [];
   bool isLoading = false;
-
+  final articleSkeleton = Article(
+    id: '',
+    author: 'Loading...',
+    title: 'Loading...',
+    description: 'Loading...',
+    url: '',
+    urlToImage: '',
+    publishedAt: DateTime.now(),
+  );
   @override
   void initState() {
     retrieveArticles();
@@ -32,6 +40,8 @@ class _HomePageState extends State<HomePage> {
       final tempArticles = await articleService.getArticles();
       setState(() {
         articlesL.addAll(tempArticles);
+        articlesL.addAll(tempArticles);
+
         isLoading = false;
       });
     } catch (e) {
@@ -44,7 +54,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('NetForeMost Test ${articlesL.length}'),
+          title: const Text('NetForeMost Test'),
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -52,15 +62,12 @@ class _HomePageState extends State<HomePage> {
               if (isLoading)
                 Skeletonizer(
                   enabled: true,
+                  ignoreContainers: false,
                   child: ListView.builder(
                     itemCount: 7,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text('Item number $index as title'),
-                        subtitle: const Text('Subtitle here'),
-                        trailing: const Icon(Icons.ac_unit),
-                      );
+                      return ArticleItem(article: articleSkeleton);
                     },
                   ),
                 ),

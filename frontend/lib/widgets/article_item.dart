@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/models/article.dart';
+import 'package:frontend/widgets/custom_list_title.dart';
 
 class ArticleItem extends StatelessWidget {
   const ArticleItem({
@@ -11,14 +12,12 @@ class ArticleItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 200,
-      width: double.infinity,
-      child: ListTile(
-        title: Text(article.title),
-        subtitle: Text(article.description),
-        //leading: Image.network(article.urlToImage), //TODO: Handle error image
-      ),
+    return CustomListTile(
+      title: article.title,
+      description: article.description,
+      author: article.author,
+      imageUrl: article.urlToImage,
+      urlToLaunch: article.url,
     );
   }
 }

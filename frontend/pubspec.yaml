@@ -33,6 +33,7 @@ dependencies:
   flutter:
     sdk: flutter
   skeletonizer: ^1.4.1+1
+  url_launcher: ^6.3.0
 
 dev_dependencies:
   flutter_lints: ^3.0.0
