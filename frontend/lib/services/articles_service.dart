@@ -18,6 +18,9 @@ class ArticleService {
     try {
       final response = await _dio.get('/articles');
       if (response.statusCode == 200) {
+        await Future.delayed(const Duration(
+            seconds:
+                5)); // Simulate network delay because I will create a skeleton
         return Article.fromList(response.data as List<dynamic>);
       } else {
         throw Exception(
